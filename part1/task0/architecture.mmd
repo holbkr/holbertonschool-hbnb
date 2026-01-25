@@ -1,23 +1,22 @@
 classDiagram
-    class PresentationLayer {
-        <<Interface>>
-        +UserController
-        +PlaceController
-        +AmenityController
-        +ReviewController
-    }
-    
-    class BusinessLogicLayer {
-        +UserModel
-        +PlaceModel
-        +AmenityModel
-        +ReviewModel
-    }
-    
-    class PersistenceLayer {
-        +DatabaseAccess
-        +Database
-    }
 
-    PresentationLayer --> BusinessLogicLayer : Facade Pattern
-    BusinessLogicLayer --> PersistenceLayer : Database Operations
+class PresentationLayer {
+    +API
+    +Services
+}
+
+class BusinessLogicLayer {
+    +Facade
+    +User
+    +Place
+    +Review
+    +Amenity
+}
+
+class PersistenceLayer {
+    +Repositories
+    +Database
+}
+
+PresentationLayer --> BusinessLogicLayer : Facade calls
+BusinessLogicLayer --> PersistenceLayer : Data access
